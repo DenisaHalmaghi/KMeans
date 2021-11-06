@@ -8,7 +8,7 @@ namespace ML2
     {
         int numberOfCentroids;
 
-        Color[] colors = { Color.Red, Color.Blue, Color.Green, Color.Magenta };
+        Color[] colors = { Color.Red, Color.Blue, Color.Green, Color.BlueViolet, Color.Brown };
         public CentroidGenerator(int numberOfCentroids)
         {
             this.numberOfCentroids = numberOfCentroids;
@@ -18,13 +18,16 @@ namespace ML2
         {
             Random r = new Random();
             var centroids = new List<(int x, int y, Color color)>();
-            for (int i = 0; i < numberOfCentroids; i++)
-            {
-                var x = r.Next(Constants.MIN, Constants.MAX);
-                var y = r.Next(Constants.MIN, Constants.MAX);
-                var colorIndex = i % (colors.Length);
-                centroids.Add((x, y, colors[colorIndex]));
-            }
+
+            centroids.Add((31, 135, colors[0]));
+            centroids.Add((-210, 203, colors[1]));
+            /* for (int i = 0; i < numberOfCentroids; i++)
+             {
+                 var x = r.Next(Constants.MIN, Constants.MAX);
+                 var y = r.Next(Constants.MIN, Constants.MAX);
+                 var colorIndex = i % (colors.Length);
+                 centroids.Add((x, y, colors[colorIndex]));
+             }*/
 
             return centroids;
         }

@@ -11,13 +11,13 @@ namespace ML2
         List<(int X, int Y, Color color)> points;
         List<(int X, int Y, Color color)> centroids;
         MapBuilder builder;
-        int convergentaNoua;
-        int convergentaVeche;
+        double convergentaNoua;
+        double convergentaVeche;
         public Form1()
         {
             InitializeComponent();
             points = (new PointsReader("puncte.txt")).readPoints();
-            centroids = (new CentroidGenerator(4)).generate();
+            centroids = (new CentroidGenerator(5)).generate();
             builder = new MapBuilder(points, centroids);
         }
 
@@ -26,31 +26,39 @@ namespace ML2
             var centroidToPointsMap = builder.build();
             var similarityCalculator = new SimilarityCalculator();
             (int x, int y) center;
+            List<int> val;
+            convergentaVeche = convergentaNoua;
+            convergentaNoua = 0;
             foreach (var centroidIndex in centroidToPointsMap.Keys)
             {
-                var pointsIndexes = centroidToPointsMap.GetValueOrDefault(centroidIndex);
-                center = (0, 0);
-                //salvam valoarea veche
-                convergentaVeche = convergentaNoua;
-                //initializam
-                convergentaNoua = 0;
-                foreach (var pointIndex in pointsIndexes)
+                //? here
+                centroidToPointsMap.TryGetValue(centroidIndex, out val);
+                var pointsIndexes = centroidToPointsMap[centroidIndex];
+                //if there are no points just leave the centroid there
+                if (val.Count > 0)
                 {
-                    var point = points[pointIndex];
-                    //medie artiemtica pentru centrul de grutate
-                    center.x += point.X;
-                    center.y += point.Y;
+                    center = (0, 0);
+                    foreach (var pointIndex in pointsIndexes)
+                    {
+                        var point = points[pointIndex];
+                        //medie artiemtica pentru centrul de grutate
+                        center.x += point.X;
+                        center.y += point.Y;
 
-                    //recalculam
-                    convergentaNoua += (int)similarityCalculator.calculate(point, centroids[centroidIndex]);
+                        //recalculam
+                        convergentaNoua += similarityCalculator.calculate(point, centroids[centroidIndex]);
+                    }
+
+                    //avoid dividing by 0
+                    var count = pointsIndexes.Count;
+                    center.x /= count;
+                    center.y /= count;
+
+                    centroids[centroidIndex] = (center.x, center.y, centroids[centroidIndex].color);
                 }
 
-                //avoid dividing by 0
-                var count = pointsIndexes.Count > 0 ? pointsIndexes.Count : 1;
-                center.x /= count;
-                center.y /= count;
 
-                centroids[centroidIndex] = (center.x, center.y, centroids[centroidIndex].color);
+
             }
         }
 
@@ -64,8 +72,12 @@ namespace ML2
             var epoca = 1;
             do
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 drawer.clean();
+                if (epoca == 2)
+                {
+
+                }
                 moveCentroid();
                 drawer.draw(points);
                 drawer.draw(centroids, true);
@@ -76,10 +88,6 @@ namespace ML2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            /* do
-             {
-                 moveCentroid();
-             } while (convergentaNoua != convergentaVeche);*/
         }
     }
 }

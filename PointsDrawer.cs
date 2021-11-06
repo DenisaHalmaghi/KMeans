@@ -22,7 +22,7 @@ namespace ML2
 
         public void draw(List<(int X, int Y, Color color)> points, bool large = false)
         {
-            var pointSize = large ? 8 : 1;
+            var pointSize = large ? 8 : 2;
             canvas.Graphics.DrawRectangle(new Pen(Color.Black), 0, 0, Constants.MAX * 2, Constants.MAX * 2);
 
             foreach (var point in points)

@@ -21,35 +21,37 @@ namespace ML2
         {
             centroidToPointsMap = new Dictionary<int, List<int>>();
             var similarityCalculator = new SimilarityCalculator();
-            double maxSimilarity;
+            double bestSimilarity;
             int mostSimilarCentroid;
 
             var pointsCopy = points.ToList();
             foreach (var point in pointsCopy.Select((data, index) => (data, index)))
             {
-                maxSimilarity = -1;
+                bestSimilarity = Double.MaxValue;
                 mostSimilarCentroid = 0;
                 foreach (var centroid in centroids.Select((data, index) => (data, index)))
                 {
                     var calculatedSimilarity = similarityCalculator.calculate(point.data, centroid.data);
 
-                    if (maxSimilarity < calculatedSimilarity)
+                    if (calculatedSimilarity < bestSimilarity)
                     {
-                        maxSimilarity = calculatedSimilarity;
+                        bestSimilarity = calculatedSimilarity;
                         mostSimilarCentroid = centroid.index;
                     }
                 }
                 List<int> list;
 
                 //change the color of the point to match the centroid it's being "assgined" to
-                points[point.index] = (point.data.X, point.data.Y, centroids[mostSimilarCentroid].color);
+                points[point.index] = (points[point.index].X, points[point.index].Y, centroids[mostSimilarCentroid].color);
                 if (centroidToPointsMap.TryGetValue(mostSimilarCentroid, out list))
                 {
                     list.Add(point.index);
                 }
                 else
                 {
-                    centroidToPointsMap.Add(mostSimilarCentroid, new List<int>(point.index));
+                    list = new List<int>();
+                    list.Add(point.index);
+                    centroidToPointsMap.Add(mostSimilarCentroid, list);
                 }
 
             }
