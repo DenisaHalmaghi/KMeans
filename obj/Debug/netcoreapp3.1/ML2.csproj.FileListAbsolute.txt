@@ -1,0 +1,15 @@
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.csprojAssemblyReference.cache
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.Form1.resources
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.csproj.GenerateResource.cache
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.AssemblyInfoInputs.cache
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.AssemblyInfo.cs
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.csproj.CoreCompileInputs.cache
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.exe
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.deps.json
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.runtimeconfig.json
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.runtimeconfig.dev.json
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.dll
+C:\Users\DENISA\source\repos\ML2\ML2\bin\Debug\netcoreapp3.1\ML2.pdb
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.dll
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.pdb
+C:\Users\DENISA\source\repos\ML2\ML2\obj\Debug\netcoreapp3.1\ML2.genruntimeconfig.cache
