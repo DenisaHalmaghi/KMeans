@@ -19,15 +19,13 @@ namespace ML2
             Random r = new Random();
             var centroids = new List<(int x, int y, Color color)>();
 
-            centroids.Add((31, 135, colors[0]));
-            centroids.Add((-210, 203, colors[1]));
-            /* for (int i = 0; i < numberOfCentroids; i++)
-             {
-                 var x = r.Next(Constants.MIN, Constants.MAX);
-                 var y = r.Next(Constants.MIN, Constants.MAX);
-                 var colorIndex = i % (colors.Length);
-                 centroids.Add((x, y, colors[colorIndex]));
-             }*/
+            for (int i = 0; i < numberOfCentroids; i++)
+            {
+                var x = r.Next(Constants.MIN, Constants.MAX);
+                var y = r.Next(Constants.MIN, Constants.MAX);
+                var colorIndex = i % (colors.Length);
+                centroids.Add((x, y, colors[colorIndex]));
+            }
 
             return centroids;
         }
