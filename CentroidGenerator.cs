@@ -22,7 +22,7 @@ namespace ML2
             {
                 var x = r.Next(Constants.MIN, Constants.MAX);
                 var y = r.Next(Constants.MIN, Constants.MAX);
-                var colorIndex = i % (colors.Length - 1);
+                var colorIndex = i % (colors.Length);
                 centroids.Add((x, y, colors[colorIndex]));
             }
 

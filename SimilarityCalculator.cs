@@ -9,7 +9,8 @@ namespace ML2
     {
         public double calculate((int X, int Y, Color color) point, (int X, int Y, Color color) centroid)
         {
-            return Math.Sqrt(Math.Pow(point.X - centroid.X, 2) + Math.Pow(point.Y - centroid.Y, 2));
+            var value = Math.Sqrt(Math.Pow(point.X - centroid.X, 2) + Math.Pow(point.Y - centroid.Y, 2));
+            return value;
         }
     }
 }

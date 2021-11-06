@@ -14,14 +14,21 @@ namespace ML2
         {
             this.canvas = control;
         }
-        public void draw(List<(int X, int Y, Color color)> points)
+
+        public void clean()
         {
+            canvas.Graphics.Clear(Color.White);
+        }
+
+        public void draw(List<(int X, int Y, Color color)> points, bool large = false)
+        {
+            var pointSize = large ? 8 : 1;
             canvas.Graphics.DrawRectangle(new Pen(Color.Black), 0, 0, Constants.MAX * 2, Constants.MAX * 2);
 
             foreach (var point in points)
             {
                 var brush = new SolidBrush(point.color);
-                canvas.Graphics.FillRectangle(brush, converter.Ox(point.X), converter.Oy(point.Y), 1, 1);
+                canvas.Graphics.FillRectangle(brush, converter.Ox(point.X), converter.Oy(point.Y), pointSize, pointSize);
             }
         }
     }

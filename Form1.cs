@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ML2
@@ -10,8 +11,8 @@ namespace ML2
         List<(int X, int Y, Color color)> points;
         List<(int X, int Y, Color color)> centroids;
         MapBuilder builder;
-        double convergentaNoua;
-        double convergentaVeche;
+        int convergentaNoua;
+        int convergentaVeche;
         public Form1()
         {
             InitializeComponent();
@@ -41,27 +42,44 @@ namespace ML2
                     center.y += point.Y;
 
                     //recalculam
-                    convergentaNoua += similarityCalculator.calculate(point, centroids[centroidIndex]);
+                    convergentaNoua += (int)similarityCalculator.calculate(point, centroids[centroidIndex]);
                 }
 
-                center.x /= pointsIndexes.Count;
-                center.y /= pointsIndexes.Count;
+                //avoid dividing by 0
+                var count = pointsIndexes.Count > 0 ? pointsIndexes.Count : 1;
+                center.x /= count;
+                center.y /= count;
 
                 centroids[centroidIndex] = (center.x, center.y, centroids[centroidIndex].color);
             }
         }
 
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            (new PointsDrawer(e)).draw(points);
+            var drawer = new PointsDrawer(e);
+            drawer.draw(points);
+            drawer.draw(centroids, true);
+            this.Text = "Initial";
+            var epoca = 1;
+            do
+            {
+                Thread.Sleep(1000);
+                drawer.clean();
+                moveCentroid();
+                drawer.draw(points);
+                drawer.draw(centroids, true);
+                this.Text = "Epoca " + epoca;
+                epoca++;
+            } while (convergentaNoua != convergentaVeche);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            do
-            {
-                moveCentroid();
-            } while (convergentaNoua != convergentaVeche);
+            /* do
+             {
+                 moveCentroid();
+             } while (convergentaNoua != convergentaVeche);*/
         }
     }
 }

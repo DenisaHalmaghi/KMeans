@@ -23,7 +23,9 @@ namespace ML2
             var similarityCalculator = new SimilarityCalculator();
             double maxSimilarity;
             int mostSimilarCentroid;
-            foreach (var point in points.Select((data, index) => (data, index)))
+
+            var pointsCopy = points.ToList();
+            foreach (var point in pointsCopy.Select((data, index) => (data, index)))
             {
                 maxSimilarity = -1;
                 mostSimilarCentroid = 0;
