@@ -18,8 +18,10 @@ namespace ML2
         public Form1()
         {
             InitializeComponent();
+            Random r = new Random(); ;
+            var nrCentroizi = r.Next(2, 10);
             points = (new PointsReader("puncte.txt")).readPoints();
-            centroids = (new CentroidGenerator(5)).generate();
+            centroids = (new CentroidGenerator(nrCentroizi)).generate();
             builder = new MapBuilder(points, centroids);
         }
 
@@ -86,7 +88,7 @@ namespace ML2
             {
                 moveCentroid();
                 this.Refresh();
-                await Task.Delay(4000);
+                await Task.Delay(1000);
                 this.Text = "Epoca " + epoca;
 
                 epoca++;

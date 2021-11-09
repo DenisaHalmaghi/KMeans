@@ -8,7 +8,7 @@ namespace ML2
     {
         int numberOfCentroids;
 
-        Color[] colors = { Color.Red, Color.Blue, Color.Green, Color.BlueViolet, Color.Brown };
+        Color[] colors = { Color.Red, Color.Blue, Color.Green, Color.BlueViolet, Color.Brown, Color.Yellow };
         public CentroidGenerator(int numberOfCentroids)
         {
             this.numberOfCentroids = numberOfCentroids;
